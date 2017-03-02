@@ -5,22 +5,10 @@
 
 # Owain Kenway
 
-ftcdir="."
-ftcterm=""
-
-if [ "$#" -eq 1 ]
+if [ "$#" -ge 1 ] && [ "$#" -le 2 ] 
 then
-  ftcterm=$1
-elif [ "$#" -eq 2 ]
-then
-  ftcterm=$1
-  ftcdir=$2
+  grep -Rsl "$1" ${2:-.}/*
 else
   echo "USAGE: ftc PATTERN [DIRECTORY]"
   exit 1
 fi
-
-for a in `find $ftcdir`
-do
-  grep -Hs "$ftcterm" $a
-done
