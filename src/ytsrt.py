@@ -2,7 +2,7 @@
 
 '''
   Python script to convert YouTube XML subtitles to SRT format
-  It might be neater to use an XML library but I want to avoide 
+  It might be neater to use an XML library but I want to avoid 
   external dependencies, and pretending that it's not XML, it
   resembles a fairly simple text file.
   
