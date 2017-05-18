@@ -2,4 +2,4 @@
 
 # Approximate behaviour of DOS "dir" WRT pagination
 
-ls --color=none -alhpF --group-directories-first $* | more
+ls --color=none -lhpF --group-directories-first $* | more
