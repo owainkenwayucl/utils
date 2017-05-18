@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Approximate behaviour of DOS "dir" WRT pagination
+
+ls --color=none -alhpF --group-directories-first $* | more

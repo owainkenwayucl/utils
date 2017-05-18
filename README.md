@@ -8,3 +8,5 @@ Currently contains:
  * `ytsrt.py` - a short program for converting YouTube XML subtitles into SRT format.
 
  * `intsum`, `fpsum` - tiny F77 programs which sum all the numbers from `stdin` and put the output on `stdout`.  `intsum` does integer math, `fpsum` double precision floating point.
+
+ * `dir` - a shell wrapper to be more like the behaviour of DOS dir (WRT pagination, order) than GNU dir.
