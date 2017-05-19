@@ -10,3 +10,5 @@ Currently contains:
  * `intsum`, `fpsum` - tiny F77 programs which sum all the numbers from `stdin` and put the output on `stdout`.  `intsum` does integer math, `fpsum` double precision floating point.
 
  * `dir` - a shell wrapper to be more like the behaviour of DOS `dir` (WRT pagination, order) than GNU `dir`.
+
+ * `bt.py` - an extremely basic tool to control Banshee from a console.
