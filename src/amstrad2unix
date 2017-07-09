@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# For some reason files that come off the NC200 have a line of ^@ characters
+# at the end.  
+
+# To convert to unix, strip this off, then dos2unix.
+
+set -e
+
+sed -i 's/\x0//g' $1
+dos2unix $1
