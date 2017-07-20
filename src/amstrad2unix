@@ -7,9 +7,12 @@
 
 name=`basename ${0}`
 
+# Make sure we have the right number of arguments.
 if [ "$#" -ne 1 ]; then
-  echo "Invoke with:"
-  echo "  ${name} <filename>"
+  echo ""
+  echo " Invoke with:"
+  echo "             ${name} <filename>"
+  echo ""
   exit 1
 fi
 
@@ -36,7 +39,7 @@ sed -i 's/\x0//g' ${1}
 
 tr -cd '\11\12\15\40-\176' < ${1} > ${temp}
 
-# Replace orginal file with tmep file.
+# Replace orginal file with temp file.
 mv ${temp} ${1}
 
 # Run dos2unix to fix line endings (some files have DOS line endings depending
