@@ -1,10 +1,44 @@
 #!/usr/bin/env bash
 # For some reason files that come off the NC200 have a line of ^@ characters
-# at the end.  
+# at the end and word processor documents have lots of binary gibberish for 
+# formatting.
 
-# To convert to unix, strip this off, then dos2unix.
+# To convert to unix, strip these off, then dos2unix.
 
+name=`basename ${0}`
+
+if [ "$#" -ne 1 ]; then
+  echo "Invoke with:"
+  echo "  ${name} <filename>"
+  exit 1
+fi
+
+echo "${name}: converting file ${1} to Unix format ..."
+
+# Halt on any error.
 set -e
 
-sed -i 's/\x0//g' $1
-dos2unix $1
+# Create a temporary file.
+temp=`mktemp`
+
+# Strip the ^@s out.
+# This line can probably be removed, but belt and braces! :)
+sed -i 's/\x0//g' ${1}
+
+# Remove every character except for:
+# 11: tab
+# 12: linefeed
+# 15: carriage return
+# 40 -> 176: printable characters
+
+# This is based on the posting here:
+# http://alvinalexander.com/blog/post/linux-unix/how-remove-non-printable-ascii-characters-file-unix
+
+tr -cd '\11\12\15\40-\176' < ${1} > ${temp}
+
+# Replace orginal file with tmep file.
+mv ${temp} ${1}
+
+# Run dos2unix to fix line endings (some files have DOS line endings depending
+# on the process used to copy them).
+dos2unix -q ${1}
