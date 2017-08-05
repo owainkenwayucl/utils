@@ -8,7 +8,7 @@ c     Sum up numbers from stdin and put answer in stdout
       s = 0
       
 
-      total = 0
+      total = 0d0
       do while (s .eq. 0)
         read(*,*,IOSTAT=s) n
         if (s .eq. 0) then
