@@ -1,0 +1,11 @@
+#!/usr/bin/env ucblogo
+; Simple program to flip a coin to help me decide if an action is driven by
+; evil or incompetence.
+
+to incompetent_or_evil
+  make "r random 2
+  ifelse equal? :r 1 [print [EVIL]] [print [Incompetence]]
+end
+
+incompetent_or_evil
+bye
