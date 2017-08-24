@@ -4,7 +4,7 @@
 
 to incompetent_or_evil
   make "r random 2
-  ifelse equal? :r 1 [print [EVIL]] [print [Incompetence]]
+  ifelse equal? :r 1 [print "EVIL] [print "Incompetence]
 end
 
 incompetent_or_evil
