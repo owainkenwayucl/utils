@@ -14,3 +14,5 @@ Currently contains:
  * `bt.py` - an extremely basic tool to control Banshee from a console.
 
  * `amstrad2unix` - a command-line tool to convert files copied from Amstrad NC series computers to Unix/Linux format.
+
+ * `unicode_pretty.hy` - a command-line tool to convert ASCII strings into pretty unicode text, e.g. 𝔅𝔩𝔞𝔠𝔨𝔩𝔢𝔱𝔱𝔢𝔯.
