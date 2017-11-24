@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# For some reason files that come off the RPi have ^M at the beginning of new
+# lines which dos2unix can't cope with.
+
+# To convert to unix, strip these off, then dos2unix.
+
+name=`basename ${0}`
+
+# Make sure we have the right number of arguments.
+if [ "$#" -ne 1 ]; then
+  echo ""
+  echo " Invoke with:"
+  echo "             ${name} <filename>"
+  echo ""
+  exit 1
+fi
+
+echo "${name}: converting file ${1} to Unix format ..."
+
+# Halt on any error.
+set -e
+
+# Strip the ^Ms out.
+# This line can probably be removed, but belt and braces! :)
+sed -i 's/\r//g' ${1}
