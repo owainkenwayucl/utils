@@ -16,3 +16,5 @@ Currently contains:
  * `amstrad2unix` - a command-line tool to convert files copied from Amstrad NC series computers to Unix/Linux format.
 
  * `unicode_pretty.hy` - a command-line tool to convert ASCII strings into pretty unicode text, e.g. 𝔅𝔩𝔞𝔠𝔨𝔩𝔢𝔱𝔱𝔢𝔯.
+
+ * `python*-wrapper.sh` - commands to launch a python 2/3 interpreter with the "recommended" environment on UCL RC resources, regardless of python modules loaded.
