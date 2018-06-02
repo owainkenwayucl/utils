@@ -1,4 +1,4 @@
-all: intsum fpsum
+all: intsum fpsum fpmean
 
 fpsum: fpsum.f
 	$(FC) fpsum.f -o fpsum
@@ -6,5 +6,9 @@ fpsum: fpsum.f
 intsum: intsum.f
 	$(FC) intsum.f -o intsum
 
+fpmean: fpmean.f
+	$(FC) fpmean.f -o fpmean
+
+
 clean:
-	rm -f intsum fpsum *.o
+	rm -f intsum fpsum fpmean *.o
