@@ -54,7 +54,7 @@ def processline(line="", counter=0):
     if (line[0:2] == "<p"):
         line = line[2:]
     if (line[-4:2] == "</p>"):
-        line = line[:-4]:
+        line = line[:-4]
     line = line.strip()
 
 # Split into block about timing, and text block.
