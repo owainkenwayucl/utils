@@ -124,9 +124,9 @@ def main():
 
     parser = argparse.ArgumentParser(description="Fix free format Fortran files with invalid line lengths.")
     parser.add_argument("-c", action="store_true", help="Check only.")
-    parser.add_argument("-i", metavar="ext", help="Do in place, back up copy with extension specified.")
-    parser.add_argument("-w", metavar="linelength", help="Custom line length.")
-    parser.add_argument("-o", metavar="outputfilename", help="Output to a file instead of STDOUT.")
+    parser.add_argument("-i", metavar="ext", type=str, help="Do in place, back up copy with extension specified.")
+    parser.add_argument("-w", metavar="linelength", type=int, help="Custom line length.")
+    parser.add_argument("-o", metavar="outputfilename", type=str, help="Output to a file instead of STDOUT.")
     parser.add_argument("files", metavar="file", type=str, nargs="+",help="Files to fix.")
 
     args=parser.parse_args()
