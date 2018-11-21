@@ -13,23 +13,24 @@ CONTINUATION_STARTLINE = "      &"
 
 # Line length settings
 MIN_LENGTH = len(CONTINUATION_STARTLINE) + len(CONTINUATION_ENDLINE) + 1
-DEFAULT_LINE_LENGTH = 80
 FIXED_LINE_LENGTH = 80 # We don't actually do fixed format files, but I prefer 80 col anyway.
 FREE_LINE_LENGTH = 132
+DEFAULT_LINE_LENGTH = FREE_LINE_LENGTH
 
 # I/O settings
 STDERR = sys.stderr
 STDOUT = sys.stdout 
 
 # We can't use Python's string splitter as we want to handle string literals properly.
-def string_split(s):
+def string_split(s, sep=" "):
     inquotes=False
     retlist = []
 
     token = ""
     for character in s.strip():
-        if character == " " and not inquotes:
+        if character == sep and not inquotes:
             if not (token == ""):
+                token = token + sep
                 retlist.append(token)
                 token = ""
             else:
@@ -65,19 +66,19 @@ def force_fix_file(filename, maxlength=DEFAULT_LINE_LENGTH, output=STDOUT):
                         break
                     else:
                         if (len(tempstr + t + " " + CONTINUATION_ENDLINE)) < maxlength + 1:
-                                tempstr = tempstr + t + " "
+                            tempstr = tempstr + t + " "
                         else:
-                                if (t.startswith('"') and t.endswith('"')):
-                                    tempstr = tempstr + t + " "
-                                    while (len(tempstr) > maxlength + 1):
-                                        outstr = tempstr[:(maxlength-1)] + CONTINUATION_ENDLINE
-                                        output.write(outstr)
-                                        tempstr = CONTINUATION_STARTLINE + tempstr[(maxlength-1):]
-                                    output.write(tempstr)
-                                    tempstr=""                           
-                                else: 
-                                    output.write(tempstr + " " + CONTINUATION_ENDLINE)
-                                    tempstr=CONTINUATION_STARTLINE + " " + t + " "
+                            if (t.startswith('"') and t.endswith('"')):
+                                tempstr = tempstr + t + " "
+                                while (len(tempstr) > maxlength + 1):
+                                    outstr = tempstr[:(maxlength-1)] + CONTINUATION_ENDLINE
+                                    output.write(outstr)
+                                    tempstr = CONTINUATION_STARTLINE + tempstr[(maxlength-1):]
+                                output.write(tempstr)
+                                tempstr=""
+                            else:
+                                output.write(tempstr + " " + CONTINUATION_ENDLINE)
+                                tempstr=CONTINUATION_STARTLINE + " " + t + " "
                         index += 1
                 output.write(tempstr + "\n")
 
@@ -103,7 +104,7 @@ def check_file(filename, maxlength=DEFAULT_LINE_LENGTH, report=None):
 
     if report != None:
         report.write(filename +  ": " + str(len(overlengthlines)) + "\n")
-        for a in overlengthlines.keys():
+        for a in sorted(overlengthlines.keys()):
             report.write(str(a) + ": " + str(overlengthlines[a]) + "\n")
 
     return len(overlengthlines) == 0
@@ -132,10 +133,15 @@ def main():
     args=parser.parse_args()
 
     if args.w != None:
-        maxlength = args.w 
+        if args.w >= MIN_LENGTH:
+            maxlength = args.w
+        else:
+            STDERR.write("Error - you have specified a length [" + str(args.w) + "] smaller than the minimum possible ["+ str(MIN_LENGTH) + "]\n")
+            sys.exit(2)
 
     if args.o and args.i:
         STDERR.write("Error - you cannot both write output to a separate file and write it in place.\n")
+        sys.exit(1)
     else:
         if args.o != None:
             outfile = open(args.o, 'w')
