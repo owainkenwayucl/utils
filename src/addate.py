@@ -30,16 +30,7 @@ def convert(date):
     realdate = str(datetime.datetime.fromtimestamp(epoch))
     return realdate
 
-# Our normal main.  
-# If we have an argument, convert otherwise print basic usage info.
 if __name__ == '__main__':
-#    import sys
-#    
-#    if len(sys.argv) > 1:
-#        date=sys.argv[1]
-#        print(convert(date))
-#    else:
-#        print("Usage:\n   " + sys.argv[0] + " <AD Date>")
     import argparse
     parser = argparse.ArgumentParser(description='Convert AD dates.')
     parser.add_argument('ad_date', metavar='<AD Date>', type=int)
