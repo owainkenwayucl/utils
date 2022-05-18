@@ -1,0 +1,6 @@
+#!/bin/bash -l
+# Wrapper to load the python3/recommended module and run python
+
+module purge
+module load gcc-libs/4.9.2 python3/recommended
+python3 `which addate.py` "$@"
