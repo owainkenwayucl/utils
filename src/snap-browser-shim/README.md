@@ -9,7 +9,7 @@ The script `snap-browser-shim.sh` is meant to copy that temporary file to a loca
 1. Copy  `snap-browser-shim.sh` to a directory in your `$PATH`.
 2. If desired, modify it to put temporary files in a different location and start a different browser.
 
-**Note** - you cannot store the temporary files in `/tmp/` or `/dev/shm` or other locations which will be automatically cleaned because Snaps are not allowed to access those locations. You will therefore infinitely slowly fill up this location with temporary files. You probably want to empty that directory regularly (maybe as an automated task).  The shim does not delete this file after the browser process closes because depending on whether the browser is already running or not, this process has different behaviour and we cannot guarantee that it terminating means the file has been opened. Welcome to everything being intentionally painful.
+**Note** - you cannot store the temporary files in `/tmp/` or `/dev/shm` or other locations which will be automatically cleaned because Snaps are not allowed to access those locations. You will therefore infinitely slowly fill up this location with temporary files. You probably want to empty that directory regularly (maybe as an automated task).  The shim does not delete this file after the browser process closes because depending on whether the browser is already running or not, this process has different behaviour and we cannot guarantee that it terminating means the file has been opened. Welcome to everything being intentionally painful.  This is what Snaps bring you.
 
 You can control both the temporary directory path and the browser at run time with the `$SHIM_TMP_DIR` and `$SHIM_BROWSER` environment variables.
 
