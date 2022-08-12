@@ -42,7 +42,7 @@ Open it in your editor and scroll down to:
 # c.ServerApp.browser = ''
 ```
 
-Uncomment the last line and change it to h
+Uncomment the last line and change it to:
 ```python
 ## Specify what command to use to invoke a web
 #                        browser when starting the server. If not specified, the
