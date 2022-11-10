@@ -20,7 +20,7 @@ c     Sum up numbers from stdin and put answer in stdout
 
       c = 0d0
       total = 0d0
-      do while (s .eq. 0)
+      do while (s .ge. 0)
         if (argl .gt. 0) then
           read(42, *, IOSTAT = s) n
         else
