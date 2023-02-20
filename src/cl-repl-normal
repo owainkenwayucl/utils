@@ -1,5 +1,3 @@
-#!/bin/bash -l
-
-module load rlwrap/0.43 sbcl/2.1.6
+#!/usr/bin/env bash
 
 rlwrap sbcl --noinform --eval "(setf *read-default-float-format* 'double-float)" --eval "(require 'sb-aclrepl)" --eval "(setf sb-aclrepl:*prompt* \"~:[~3*~;[~:*~D~:[~;~:*:~D~]~:[~;i~]~:[~;c~]] ~]~A(~D)λ> \")" "$@"
