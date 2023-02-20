@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-  Python script to convert YouTube JSON subtitles to SRT format
+  Python script to convert YouTube JSON subtitles to WebVTT format
   
   Owain Kenway
 '''
@@ -32,6 +32,7 @@ def timeconvert(timestamp=0, delta=0):
     minutes_s = minwidth(minutes,2)
     seconds_s = minwidth(seconds,2)
     ms_s = minwidth(ms, 3)
+
 
     return (hours_s + ":" + minutes_s + ":" + seconds_s + "." + ms_s)
 
@@ -85,7 +86,7 @@ def processfile(filename):
 
     xf.close()
 
-    output = ""
+    output = "WEBVTT\n"
     counter = 1
     for a in data:
        output = output + "\n" + processline(a, counter)
