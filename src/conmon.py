@@ -4,6 +4,7 @@ import subprocess
 import argparse
 import time
 import datetime
+import sys
 
 PING_COMMAND = ['ping', '-c', '1']
 TARGET_HOST = "www.google.com"
@@ -17,7 +18,7 @@ def test_connection(host):
 		completed = subprocess.run(command, capture_output=True, encoding="UTF-8")
 		if completed.returncode != 0:
 			print(now + " Could not connect to " + host)
-			
+			sys.stdout.flush()			
 	except:
 		print(now + " Could not connect to " + host + "[EXCEPTION]")
 
