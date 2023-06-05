@@ -54,7 +54,16 @@ def gents(timestamp=0, duration=0):
 # \n
 def processline(line={'segs':[{'utf8':""}],'tStartMs':0,'dDurationMs':0}, counter=0):
 
-    l = line['segs'][0]['utf8']
+# There's now a wrapping duration tag for reasons.
+    if ('segs' not in line.keys()):
+        return ''
+
+    l = ""
+    for a in line['segs']:
+        l = l + "" + a['utf8']
+
+# Tidy line
+    l = l.strip()
 
 # ignore empty lines
     if l == "" :
@@ -63,9 +72,6 @@ def processline(line={'segs':[{'utf8':""}],'tStartMs':0,'dDurationMs':0}, counte
     t = 0
     d = 0
     text=""
-
-# Tidy line
-    l = l.strip()
     
 # Work out times from the preamble
     t = line['tStartMs']
@@ -89,8 +95,10 @@ def processfile(filename):
     output = "WEBVTT\n"
     counter = 1
     for a in data:
-       output = output + "\n" + processline(a, counter)
-       counter = counter + 1
+       processed = processline(a, counter)
+       if not(processed == ""):
+           output = output + "\n" + processed
+           counter = counter + 1
     return output
 
 # Our normal main.  

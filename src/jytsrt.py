@@ -33,7 +33,7 @@ def timeconvert(timestamp=0, delta=0):
     seconds_s = minwidth(seconds,2)
     ms_s = minwidth(ms, 3)
 
-    return (hours_s + ":" + minutes_s + ":" + seconds_s + "." + ms_s)
+    return (hours_s + ":" + minutes_s + ":" + seconds_s + "," + ms_s)
 
 # Generate a title timestamp
 # SRT format for time is:
@@ -53,7 +53,18 @@ def gents(timestamp=0, duration=0):
 # \n
 def processline(line={'segs':[{'utf8':""}],'tStartMs':0,'dDurationMs':0}, counter=0):
 
+# There's now a wrapping duration tag for reasons.
+    if ('segs' not in line.keys()):
+        return ''
+
     l = line['segs'][0]['utf8']
+
+    l = ""
+    for a in line['segs']:
+        l = l + "" + a['utf8']
+
+# Tidy line
+    l = l.strip()
 
 # ignore empty lines
     if l == "" :
@@ -63,9 +74,6 @@ def processline(line={'segs':[{'utf8':""}],'tStartMs':0,'dDurationMs':0}, counte
     d = 0
     text=""
 
-# Tidy line
-    l = l.strip()
-    
 # Work out times from the preamble
     t = line['tStartMs']
     d = line['dDurationMs']
@@ -88,8 +96,10 @@ def processfile(filename):
     output = ""
     counter = 1
     for a in data:
-       output = output + "\n" + processline(a, counter)
-       counter = counter + 1
+       processed = processline(a, counter)
+       if not(processed == ""):
+           output = output + "\n" + processed
+           counter = counter + 1
     return output
 
 # Our normal main.  
