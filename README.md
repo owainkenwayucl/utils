@@ -7,6 +7,10 @@ Currently contains:
 
  * `ytsrt.py` - a short program for converting YouTube XML subtitles into SRT format.
 
+ * `jytsrt.py` - a short program for converting YouTube JSON subtitles into SRT format.
+
+ * `jytvtt.py` - a short program for converting YouTube JSON subtities into VTT format.
+
  * `intsum`, `fpsum`, `fpmean` - tiny F77 programs which sum/mean all the numbers from `stdin` and put the output on `stdout`.  `intsum` does integer math, `fpsum`/`fpmean` double precision floating point.
 
  * `dir` - a shell wrapper to be more like the behaviour of DOS `dir` (WRT pagination, order) than GNU `dir`.
