@@ -18,6 +18,14 @@ def pad(s, w):
 # This routine draws a table from a list of dicts. It's horrifying.
 # In my defence I'm extremely sick while writing this.
 def draw_table(data):
+
+    tl = "╭"
+    tr = "╮"
+    bl = "╰"
+    br = "╯"
+    hr = "─"
+    vl = "│"
+
     table = ""
     columns = {}
     for a  in data:
@@ -31,20 +39,23 @@ def draw_table(data):
     tw = 2
     for a in columns.keys():
         tw = tw + columns[a] + 3
-    tw = tw -1 
-    line = tw*"-"+"\n"
-    table = table + line 
-    table = table + "| "
+    tw = tw -3 
+    cline = tw * hr
+    line = vl + cline + vl + "\n"
+    tline = tl + cline + tr + "\n"
+    bline = bl + cline + br + "\n"
+    table = table + tline 
+    table = table + vl + " "
     for a in columns.keys():
-        table = table + pad(a, columns[a]) + " | "
+        table = table + pad(a, columns[a]) + " "+ vl +" "
     table = table + " \n"
     table = table + line
     for b in data:
-        table = table + "| "
+        table = table + vl + " "
         for a in columns.keys():
-            table = table + pad(empty_get(b,a), columns[a]) + " | "
+            table = table + pad(empty_get(b,a), columns[a]) + " "+ vl +" "
         table = table + " \n" 
-    table = table + line
+    table = table + bline
     return table
 
 def process_json(js):
