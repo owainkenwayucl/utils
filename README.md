@@ -26,3 +26,7 @@ Currently contains:
  * `fortwrangler`/`fortwrangler.py` - convert non-compliant free format Fortran code to the correct line length.
 
  * `ADdate`/`addate.py` - convert Active Directory dates into either text or Unix epochs.
+
+ * `aws-instance-status.py` - basically `qhost` for AWS, wraps `awscli`.
+
+ * `aws-get-ip` - converts an AWS instance ID into an IP address safely (validates it to decrease opportunity for command injection), wraps `awscli`.
