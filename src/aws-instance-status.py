@@ -7,8 +7,7 @@ def run(command):
 if __name__=="__main__":
     import sys
 
-    # This is really stupid but calling aws cli directly in this instance results in an empty table.
-    command = ["bash", "-c", "aws ec2 describe-instances --query 'Reservations[*].Instances[].[InstanceId,Tags[?Key==`Name`]|[0].Value,Tags[?Key==`Owner`]|[0].Value,State.Name,PublicIpAddress]' --output=table"]
+    command = ["aws", "ec2", "describe-instances", "--query", 'Reservations[*].Instances[].[InstanceId,Tags[?Key==`Name`]|[0].Value,Tags[?Key==`Owner`]|[0].Value,State.Name,PublicIpAddress]', "--output=table"]
 
     try:
         response = run(command)
