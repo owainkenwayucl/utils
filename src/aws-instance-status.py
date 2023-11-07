@@ -69,7 +69,6 @@ if __name__=="__main__":
 
     command = ["aws", "ec2", "describe-instances", "--query", 'Reservations[*].Instances[].[InstanceId,Tags[?Key==`Name`]|[0].Value,Tags[?Key==`Owner`]|[0].Value,State.Name,PublicIpAddress]', "--output=json"]
 
-
     try:
         response = run(command)
         js = response.stdout
