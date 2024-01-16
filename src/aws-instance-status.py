@@ -63,7 +63,7 @@ def process_json(js):
     arr = json.loads(js)
     r = []
 
-    rkeys = ["ID", "Name", "Owner", "Status", "IP address"]
+    rkeys = ["ID", "Name", "Owner", "Status", "IP Address (ext)", "IP Address (int)"]
     for a in arr:
         ld = {}
         for b in range(len(rkeys)):
@@ -78,7 +78,7 @@ def process_json(js):
 if __name__=="__main__":
     import sys
 
-    command = ["aws", "ec2", "describe-instances", "--query", 'Reservations[*].Instances[].[InstanceId,Tags[?Key==`Name`]|[0].Value,Tags[?Key==`Owner`]|[0].Value,State.Name,PublicIpAddress]', "--output=json"]
+    command = ["aws", "ec2", "describe-instances", "--query", 'Reservations[*].Instances[].[InstanceId,Tags[?Key==`Name`]|[0].Value,Tags[?Key==`Owner`]|[0].Value,State.Name,PublicIpAddress,PrivateIpAddress]', "--output=json"]
 
     try:
         response = run(command)
